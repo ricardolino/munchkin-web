@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Caslon Antique';
+  src: url('../fonts/CaslonAntique.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/CaslonAntique.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/CaslonAntique.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/CaslonAntique.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/CaslonAntique.svg#078dc1d5ec8a9f3361466f967ab09ac4') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Caslon Antique';
+  src: url('../fonts/CaslonAntique-Bold.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/CaslonAntique-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/CaslonAntique-Bold.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/CaslonAntique-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/CaslonAntique-Bold.svg#7a5dd13209bbe2b2a904fc47b3e79ce5') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  700;
+}
+
+@font-face {
+  font-family: 'Caslon Antique';
+  src: url('../fonts/CaslonAntique-BoldItalic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/CaslonAntique-BoldItalic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/CaslonAntique-BoldItalic.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/CaslonAntique-BoldItalic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/CaslonAntique-BoldItalic.svg#4deb611cd6ff9591378909799b76067b') format('svg'); /* Legacy iOS */
+
+  font-style:   italic;
+  font-weight:  700;
+}
+
+@font-face {
+  font-family: 'Caslon Antique';
+  src: url('../fonts/CaslonAntique-Italic.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/CaslonAntique-Italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/CaslonAntique-Italic.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/CaslonAntique-Italic.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/CaslonAntique-Italic.svg#a4333d2c39033b62a2ca94c4aa87624f') format('svg'); /* Legacy iOS */
+
+  font-style:   italic;
+  font-weight:  400;
+}
+
+@font-face {
+  font-family: 'Quasimodo';
+  src: url('../fonts/Quasimodo.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/Quasimodo.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('../fonts/Quasimodo.woff') format('woff'), /* Modern Browsers */
+       url('../fonts/Quasimodo.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../fonts/Quasimodo.svg#b296b92a823857ad8519caeaf88e8d26') format('svg'); /* Legacy iOS */
+
+  font-style:   normal;
+  font-weight:  400;
+}
+

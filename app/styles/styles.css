@@ -1,0 +1,80 @@
+.player {
+    width: 100%;
+    max-width: 200px;
+    border: 15px solid #480F0D;
+    background: #E2AF7E;
+    border-radius: 10px;
+    font-family: 'Caslon Antique', sans-serif;
+    padding: 10px 0 0 0;
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+    text-decoration: none;
+    color: #480F0D;
+}
+
+.player-interactions {
+    overflow: hidden;
+}
+
+.player-name-title,
+.player-power-title {
+    display: block;
+    text-align: center;
+    font-family: 'Quasimodo', sans-serif;
+}
+
+.player-level-title,
+.player-gear-title {
+    display: block;
+    float: left;
+    width: 48%;
+    margin: 0 1%;
+    text-align: center;
+    line-height: 30px;
+    font-size: 18px;
+    border: 2px solid #480F0D;
+}
+
+.player-name-title {
+    font-size: 20px;
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    color: #480F0D;
+}
+
+.player-power-title {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.player-button {
+    background: #480F0D;
+    color: #FFF;
+    display: block;
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    border: 2px solid #E2AF7E;
+    border-radius: 5px;
+    font-family: 'Caslon Antique', sans-serif;
+    cursor: pointer;
+}
+
+.player-button[disabled] {
+    opacity: 0.5;
+}
+
+.player-interactions {
+    width: 100%;
+}
+
+.player-level-buttons,
+.player-gear-buttons {
+    width: 50%;
+    float: left;
+}
