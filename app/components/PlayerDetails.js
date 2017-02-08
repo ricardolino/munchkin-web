@@ -8,7 +8,7 @@ class PlayerDetails extends Component {
         this.state = {
             level: 1,
             gear: 0,
-            playerName: null
+            playerName: ''
         }
     }
 
