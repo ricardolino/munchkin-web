@@ -24,7 +24,6 @@ class TableView extends Component {
             <div className="view-table">
                 {
                     this.props.players.map((player, key) => {
-                        console.log(key);
                         return (
                             <PlayerInfo
                                 playerKey={key}

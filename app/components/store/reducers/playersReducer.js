@@ -9,7 +9,7 @@ export function playersReducer (state = [], action) {
             ]
 
         case UPDATE_PLAYER:
-            return array.map( (item, index) => {
+            return state.map( (item, index) => {
                 if (index !== action.payload.index) {
                     return item;
                 }

@@ -17,7 +17,7 @@ const routes = (
         <Router history={ browserHistory }>
             <Route component={ App }>
                 <IndexRoute component={ TableView }/>
-                <Route path="player/:playerName" component={ PlayerView } />
+                <Route path="player/:playerId" component={ PlayerView } />
                 <Route path="*" component={ NoMatchView }/>
             </Route>
         </Router>
