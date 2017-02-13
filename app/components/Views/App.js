@@ -1,3 +1,3 @@
 export default function App ({ children }) {
-  return <div>{children}</div>;
+  return <div className="app">{children}</div>;
 }

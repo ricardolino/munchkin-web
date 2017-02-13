@@ -1,80 +1,173 @@
-.player {
-    width: 100%;
-    max-width: 200px;
-    border: 15px solid #480F0D;
-    background: #E2AF7E;
-    border-radius: 10px;
-    font-family: 'Caslon Antique', sans-serif;
-    padding: 10px 0 0 0;
-    position: relative;
-    display: inline-block;
-    margin: 10px;
-    text-decoration: none;
-    color: #480F0D;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800');
+
+.app {
+    font-family: "Open Sans", sans-serif;
 }
 
-.player-interactions {
+.new-player {
+    display: inline-block;
+    background: #0082d5;
+    color: #FFFFFF;
+    padding: 10px;
+}
+
+.new-player-title {
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+}
+
+.player {
+    display: inline-block;
+    width: 100%;
+    max-width: 250px;
+    margin-right: 10px;
+}
+
+.player:last-child {
+    margin-right: 0;
+}
+
+.player-info {
+    background: #0082d5;
+    display: block;
+    color: #FFFFFF;
     overflow: hidden;
 }
 
-.player-name-title,
-.player-power-title {
-    display: block;
-    text-align: center;
-    font-family: 'Quasimodo', sans-serif;
-}
-
-.player-level-title,
-.player-gear-title {
-    display: block;
+.player-info .name {
+    font-size: 24px;
     float: left;
-    width: 48%;
-    margin: 0 1%;
-    text-align: center;
-    line-height: 30px;
-    font-size: 18px;
-    border: 2px solid #480F0D;
-}
-
-.player-name-title {
-    font-size: 20px;
-    margin-bottom: 5px;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
+    padding: 0 10px;
+    margin-top: 26px;
+    font-weight: 300;
+    display: inline-block;
+    width: 175px;
     background: transparent;
     border: none;
-    color: #480F0D;
+    color: #fff;
+    box-sizing: border-box;
 }
 
-.player-power-title {
-    margin-bottom: 5px;
-    font-size: 14px;
-}
-
-.player-button {
-    background: #480F0D;
-    color: #FFF;
-    display: block;
-    width: 100%;
-    height: 50px;
-    font-size: 16px;
-    border: 2px solid #E2AF7E;
-    border-radius: 5px;
-    font-family: 'Caslon Antique', sans-serif;
+.player-info .level {
+    font-size: 32px;
+    text-align: center;
+    display: inline-block;
+    float: left;
+    padding: 10px;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.2);
+    font-weight: 600;
     cursor: pointer;
 }
 
-.player-button[disabled] {
-    opacity: 0.5;
+.player-info .level:before {
+    content: 'Level';
+    font-size: 11px;
+    font-weight: 300;
+    display: block;
 }
 
-.player-interactions {
-    width: 100%;
+.player-info .bar {
+    display: block;
+    clear: both;
+    background: rgba(0, 0, 0, 0.15);
+    line-height: 30px;
+    overflow: hidden;
+    cursor: pointer;
 }
 
-.player-level-buttons,
-.player-gear-buttons {
-    width: 50%;
+.player-info .gear {
+    display: inline-block;
     float: left;
+    width: 60px;
+    background: rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
+
+.player-info .gear:before {
+    content: 'Gear';
+    font-size: 11px;
+    margin-right: 5px;
+    font-weight: 300;
+}
+
+.player-info .power {
+    font-size: 20px;
+    display: inline-block;
+    float: right;
+    text-align: center;
+    padding-right: 10px;
+}
+
+.player-info .power:before {
+    content: 'Power';
+    font-size: 14px;
+    margin-right: 5px;
+    font-weight: 300;
+}
+
+.player-attributes {
+    padding: 20px;
+}
+
+.player-attributes .attributes:first-child {
+    margin-top: 0;
+}
+
+.player-attributes .attributes {
+    width: 100%;
+    position: relative;
+    margin-top: 15px;
+    border: 1px solid #0082d5;
+}
+
+.player-attributes .button {
+    background: #0082d5;
+    border: none;
+    width: 40px;
+    height: 40px;
+    line-height: 32px;
+    color: #FFFFFF;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+}
+
+.player-attributes .button[disabled] {
+    opacity: 0.3;
+}
+
+.player-attributes .decrease {
+    left: 0;
+}
+
+.player-attributes .increase {
+    right: 0;
+}
+
+.player-attributes .button:before {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.player-attributes .decrease:before {
+    content: '-';
+}
+
+.player-attributes .increase:before {
+    content: '+';
+}
+
+.player-attributes .value {
+    line-height: 40px;
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    color: #0082d5;
+}
+

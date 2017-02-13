@@ -3,7 +3,8 @@ import Component from 'inferno-component';
 import { bindActionCreators } from 'redux';
 import { connect } from 'inferno-redux';
 
-import PlayerInfo from '../PlayerInfo';
+import Player from '../Player/';
+import Ranking from '../Ranking/';
 import { addNewPlayer } from '../store/actions/playersActions';
 
 class TableView extends Component {
@@ -25,20 +26,20 @@ class TableView extends Component {
                 {
                     this.props.players.map((player, key) => {
                         return (
-                            <PlayerInfo
+                            <Player
                                 playerKey={key}
-                                playerName={ player.name }
-                                playerLevel={ player.level }
-                                playerGear={ player.gear } />
+                                player={ player } />
                         )
                     })
                 }
-                <div className="player">
-                    <span className="player-power-title">New Player</span>
+                <div className="new-player">
+                    <span className="new-player-title">New Player</span>
                     <input
-                        className="player-name-title"
+                        className="new-player-name-field"
                         onChange={ linkEvent(this, this._addNewPlayer) } />
                 </div>
+                <Ranking
+                    players={ this.props.players } />
             </div>
         );
     }
