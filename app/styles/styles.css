@@ -9,6 +9,7 @@
     background: #0082d5;
     color: #FFFFFF;
     padding: 10px;
+    width: 19%;
 }
 
 .new-player-title {
@@ -17,13 +18,18 @@
     text-transform: uppercase;
     text-align: center;
     display: block;
+    width: 100%;
+}
+
+.new-player-name-field {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .player {
     display: inline-block;
-    width: 100%;
-    max-width: 250px;
-    margin-right: 10px;
+    width: 19%;
+    margin-right: 1%;
 }
 
 .player:last-child {
@@ -44,7 +50,7 @@
     margin-top: 26px;
     font-weight: 300;
     display: inline-block;
-    width: 175px;
+    width: 75%;
     background: transparent;
     border: none;
     color: #fff;
@@ -57,7 +63,7 @@
     display: inline-block;
     float: left;
     padding: 10px;
-    width: 60px;
+    width: 25%;
     height: 60px;
     background: rgba(0, 0, 0, 0.2);
     font-weight: 600;
@@ -83,7 +89,7 @@
 .player-info .gear {
     display: inline-block;
     float: left;
-    width: 60px;
+    width: 25%;
     background: rgba(0, 0, 0, 0.2);
     text-align: center;
 }
@@ -173,9 +179,8 @@
 
 .ranking {
     display: block;
-    width: 250px;
+    width: 100%;
     clear: both;
-    margin-top: 20px;
 }
 
 .ranking .title {
@@ -212,6 +217,7 @@
     display: block;
     line-height: 26px;
     color: #FFFFFF;
+    width: 100%;
 }
 
 .ranking .player .level,
@@ -232,13 +238,27 @@
 }
 
 .content {
-    width: 84%;
-    float: left;
+    width: 85%;
+    float: right;
     display: block;
-    padding-left: 25px;
+    padding-left: 1%;
 }
 
 .sidebar {
+    width: 15%;
     display: block;
     float: left;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .content,
+    .sidebar,
+    .player {
+        width: 100%;
+        padding: 0;
+    }
+
+    .ranking {
+        margin-bottom: 30px;
+    }
 }

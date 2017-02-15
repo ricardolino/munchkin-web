@@ -16,10 +16,6 @@ class TableView extends Component {
     render () {
         return (
             <div className="view-table">
-                <div className="sidebar">
-                    <Ranking
-                        players={ this.props.players } />
-                </div>
                 <div className="content">
                     {
                         this.props.players.map((player, key) => {
@@ -31,6 +27,10 @@ class TableView extends Component {
                         })
                     }
                     <NewPlayer />
+                </div>
+                <div className="sidebar">
+                    <Ranking
+                        players={ this.props.players } />
                 </div>
             </div>
         );
