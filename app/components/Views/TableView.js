@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'inferno-redux';
 
 import Player from '../Player/';
+import NewPlayer from '../Player/NewPlayer';
 import Ranking from '../Ranking/';
 import { addNewPlayer } from '../store/actions/playersActions';
 
@@ -12,34 +13,25 @@ class TableView extends Component {
         super(props);
     }
 
-    _addNewPlayer (instance, event) {
-        let newName = event.target.value;
-
-        event.target.value = '';
-
-        instance.props.addNewPlayer({ name: newName, level: 1, gear: 0 });
-    }
-
     render () {
         return (
             <div className="view-table">
-                {
-                    this.props.players.map((player, key) => {
-                        return (
-                            <Player
-                                playerKey={key}
-                                player={ player } />
-                        )
-                    })
-                }
-                <div className="new-player">
-                    <span className="new-player-title">New Player</span>
-                    <input
-                        className="new-player-name-field"
-                        onChange={ linkEvent(this, this._addNewPlayer) } />
+                <div className="sidebar">
+                    <Ranking
+                        players={ this.props.players } />
                 </div>
-                <Ranking
-                    players={ this.props.players } />
+                <div className="content">
+                    {
+                        this.props.players.map((player, key) => {
+                            return (
+                                <Player
+                                    playerKey={key}
+                                    player={ player } />
+                            )
+                        })
+                    }
+                    <NewPlayer />
+                </div>
             </div>
         );
     }

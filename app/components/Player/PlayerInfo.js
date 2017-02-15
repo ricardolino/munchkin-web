@@ -1,13 +1,17 @@
 import { linkEvent } from 'inferno';
 
 
-function PlayerInfo (props) {
-    let { name, level, gear } = props.data;
-    let power = level + gear;
+const PlayerInfo = (props) => {
+    let { name, level, gear, power, color } = props.data;
     let { self, toggleAttributes, changeTitle } = props.events;
+    let style = {
+        backgroundColor: color
+    }
 
     return (
-        <div className="player-info">
+        <div
+            className="player-info"
+            style={style}>
             <h2
                 className="level"
                 onClick={ linkEvent(self, toggleAttributes) }>{ level }</h2>

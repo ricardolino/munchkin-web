@@ -168,6 +168,77 @@
     font-size: 20px;
     display: block;
     text-align: center;
-    color: #0082d5;
+    color: #555555;
 }
 
+.ranking {
+    display: block;
+    width: 250px;
+    clear: both;
+    margin-top: 20px;
+}
+
+.ranking .title {
+    font-size: 16px;
+    display: block;
+    text-align: center;
+    font-weight: 600;
+    background: #eee;
+    line-height: 40px;
+}
+
+.ranking .button {
+    width: 50%;
+    border: none;
+    background: #0082d5;
+    color: #FFFFFF;
+    line-height: 25px;
+    font-size: 14px;
+    opacity: 0.5;
+    font-weight: 300;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.ranking .button.active {
+    cursor: default;
+    opacity: 1;
+    font-weight: bold;
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
+.ranking .player {
+    font-size: 16px;
+    display: block;
+    line-height: 26px;
+    color: #FFFFFF;
+}
+
+.ranking .player .level,
+.ranking .player .power,
+.ranking .player .name {
+    display: inline-block;
+    text-align: center;
+}
+
+.ranking .player .level,
+.ranking .player .power {
+    width: 20%;
+    font-weight: bold;
+}
+
+.ranking .player .name {
+    width: 60%;
+}
+
+.content {
+    width: 84%;
+    float: left;
+    display: block;
+    padding-left: 25px;
+}
+
+.sidebar {
+    display: block;
+    float: left;
+}

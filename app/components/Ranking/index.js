@@ -1,39 +1,56 @@
-import _ from 'lodash';
+import Component from 'inferno-component';
+import { linkEvent } from 'inferno';
 
-function orderByLevel (a, b) {
-    console.log(a.level - b.level);
-    return a.level - b.level;
-}
+import RankingList from './RankingList';
 
-function Ranking (props) {
-    if (props.players.length <= 1) {
-        return null;
+const ORDER_BY_LEVEL = ['level', 'power'];
+const ORDER_BY_POWER = ['power', 'level'];
+
+class Ranking extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            orderBy: ORDER_BY_LEVEL
+        }
     }
 
-    return (
-        <div className="ranking">
-            <h3 className="title">Ranking</h3>
-            <button
-                className="button by-level"
-                >Level</button>
-            <button
-                className="button by-power"
-                >Power</button>
-            <ul className="list">
-                {
-                    _.orderBy(props.players, ['level', 'gear'], ['desc', 'desc']).map((player, key) => {
-                        return (
-                            <li class="player">
-                                <span className="level">{ player.level }</span>
-                                { player.name }
-                                <span className="power">{ player.level + player.gear }</span>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
-        </div>
-    )
+    _toggleOrderBy (self) {
+        let orderBy = (self.state.orderBy === ORDER_BY_LEVEL) ? ORDER_BY_POWER : ORDER_BY_LEVEL;
+
+        self.setState({
+            orderBy
+        });
+    }
+
+    render () {
+        let { players } = this.props;
+        let { orderBy } = this.state;
+
+        if (players.length <= 1) {
+            return null;
+        }
+
+        return (
+            <div className="ranking">
+                <h3 className="title">Ranking</h3>
+                <button
+                    onClick={ linkEvent(this, this._toggleOrderBy) }
+                    disabled={ orderBy === ORDER_BY_LEVEL }
+                    className={ 'button by-level ' + (( orderBy === ORDER_BY_LEVEL) ? 'active' : '') }
+                    >Level</button>
+                <button
+                    onClick={ linkEvent(this, this._toggleOrderBy) }
+                    disabled={ orderBy === ORDER_BY_POWER }
+                    className={ 'button by-power ' + (( orderBy === ORDER_BY_POWER) ? 'active' : '') }
+                    >Power</button>
+
+                <RankingList
+                    players={ players }
+                    orderBy={ orderBy } />
+            </div>
+        )
+    }
 }
 
 export default Ranking;

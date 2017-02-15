@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import PlayerInfo from './PlayerInfo';
 import PlayerAttributes from './PlayerAttributes';
+import getRandomColor from '../../Utils/ColorUtils';
 
 import { updatePlayer } from '../store/actions/playersActions';
 
@@ -14,7 +15,7 @@ class Player extends Component {
 
         this.key = props.playerKey;
         this.state = {
-            showAttributes: false
+            showAttributes: true
         }
     }
 
@@ -28,68 +29,82 @@ class Player extends Component {
 
     _levelUpHandler (self) {
         let { updatePlayer } = self.props;
-        let { level, gear, name } = self.props.player;
+        let { level, power } = self.props.player;
+        let playerData = {
+            index: self.key,
+            data: {
+                level: parseInt(level + 1, 10),
+                power: parseInt(power + 1, 10)
+            }
+        }
 
         if (level <= 9) {
-            updatePlayer({
-                index: self.key,
-                data: {
-                    level: level + 1, gear, name
-                }
-            })
+            webSocketIo.emit('player:update', playerData);
+            // updatePlayer(playerData);
         }
     }
 
     _levelDownHandler (self) {
         let { updatePlayer } = self.props;
-        let { level, gear, name } = self.props.player;
+        let { level, power } = self.props.player;
+        let playerData = {
+            index: self.key,
+            data: {
+                level: parseInt(level - 1, 10),
+                power: parseInt(power - 1, 10)
+            }
+        }
 
         if (level > 1) {
-            updatePlayer({
-                index: self.key,
-                data: {
-                    level: level - 1, gear, name
-                }
-            })
+            webSocketIo.emit('player:update', playerData);
+            // updatePlayer(playerData);
         }
     }
 
     _gearUpHandler (self) {
         let { updatePlayer } = self.props;
-        let { level, gear, name } = self.props.player;
-
-        updatePlayer({
+        let { gear, power } = self.props.player;
+        let playerData = {
             index: self.key,
             data: {
-                gear: gear + 1, level, name
+                gear: parseInt(gear + 1, 10),
+                power: parseInt(power + 1, 10)
             }
-        })
+        }
+
+        webSocketIo.emit('player:update', playerData);
+        // updatePlayer(playerData);
     }
 
     _gearDownHandler (self) {
         let { updatePlayer } = self.props;
-        let { level, gear, name } = self.props.player;
+        let { gear, power } = self.props.player;
+        let playerData = {
+            index: self.key,
+            data: {
+                gear: parseInt(gear - 1, 10),
+                power: parseInt(power - 1, 10)
+            }
+        }
 
         if (gear > 0) {
-            updatePlayer({
-                index: self.key,
-                data: {
-                    gear: gear - 1, level, name
-                }
-            })
+            webSocketIo.emit('player:update', playerData);
+            // updatePlayer(playerData);
         }
     }
 
     _changeTitleHandler (self, event) {
         let { updatePlayer } = self.props;
-        let { level, gear, name } = self.props.player;
-
-        updatePlayer({
+        let playerData = {
             index: self.key,
             data: {
-                name: event.target.value, gear, level
+                name: event.target.value,
+                color: getRandomColor()
             }
-        })
+        }
+
+        webSocketIo.emit('player:update', playerData);
+        // updatePlayer(playerData);
     }
 
     renderAttributes (events, data) {

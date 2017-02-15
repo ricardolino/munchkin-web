@@ -11,11 +11,14 @@ module.exports = {
       },
       plugins: {
             babel: {
-                  presets: ['es2015'],
+                  presets: ['es2015', 'stage-1'],
                   plugins: ['inferno']
             }
       },
       modules: {
             autoRequire: { 'app.js': ['initialize'] }
+      },
+      server: {
+            hostname: "0.0.0.0"
       }
 };
