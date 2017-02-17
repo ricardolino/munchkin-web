@@ -213,11 +213,28 @@
     padding: 0;
 }
 
+.component-button.sync {
+    display: block;
+    border: none;
+    width: 100%;
+    max-width: 200px;
+    height: 30px;
+    margin: 10px auto 0;
+    color: #000;
+    border: 2px solid #888;
+    cursor: pointer;
+}
+
+.component-button.sync:hover {
+    font-weight: bold;
+}
+
 .ranking {
     display: block;
     width: 100%;
     clear: both;
     background: #eee;
+    overflow: hidden;
 }
 
 .ranking .title {

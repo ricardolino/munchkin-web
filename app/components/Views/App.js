@@ -4,10 +4,10 @@ import { bindActionCreators } from 'redux';
 
 import io from 'socket.io-client';
 
-import { updatePlayer, deletePlayer } from '../store/actions/playersActions';
+import { updatePlayer, deletePlayer, syncAllPlayers } from '../store/actions/playersActions';
 import { createWebSocketInstance } from '../store/actions/webSocketActions';
 
-const WEB_SOCKET_URL = 'http://socket.ricardolino.com.br/';
+const WEB_SOCKET_URL = 'http://localhost:8081/';
 
 class App extends Component {
     constructor(props) {
@@ -36,6 +36,12 @@ class App extends Component {
         if (!this.socket._callbacks['$player:delete']) {
             this.socket.on('player:delete', (data) => {
                 this.props.deletePlayer(data);
+            });
+        }
+
+        if (!this.socket._callbacks['$player:sync']) {
+            this.socket.on('player:sync', (data) => {
+                this.props.syncAllPlayers(data);
             });
         }
 
@@ -70,7 +76,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-    return bindActionCreators({ updatePlayer, deletePlayer, createWebSocketInstance }, dispatch);
+    return bindActionCreators({ updatePlayer, deletePlayer, syncAllPlayers, createWebSocketInstance }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -44,14 +44,18 @@ class PlayerView extends Component {
 
         return (
             <div className="view-player">
-                <Player
-                    playerKey={ parseInt(playerId, 10) }
-                    player={ player } />
-                <Ranking
-                    players={ this.props.players } />
+                <div className="content">
+                    <Player
+                        playerKey={ parseInt(playerId, 10) }
+                        player={ player } />
+                </div>
+                <div className="sidebar">
+                    <Ranking
+                        players={ this.props.players } />
 
-                <DeletePlayerButton
-                    events={ events } />
+                    <DeletePlayerButton
+                        events={ events } />
+                </div>
             </div>
         )
     }

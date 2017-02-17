@@ -5,11 +5,45 @@ import { connect } from 'inferno-redux';
 
 import Player from '../Player/';
 import NewPlayer from '../Player/NewPlayer';
+import SyncPlayersButton from '../Player/SyncPlayersButton';
 import Ranking from '../Ranking/';
 import { addNewPlayer } from '../store/actions/playersActions';
 
 class TableView extends Component {
+    constructor(props) {
+        super(props);
+
+        this.socket = {};
+
+        this._listenToWebSocketEvents();
+    }
+
+    _listenToWebSocketEvents () {
+        this.socket = this.props.webSocket.socket;
+    }
+
+    _syncPlayersHandler (self, event) {
+        let { players } = self.props;
+
+        self.socket.emit('player:sync', players);
+    }
+
+    _renderSyncButton (events) {
+        if (this.props.players.length <= 1) {
+            return null;
+        }
+
+        return (
+            <SyncPlayersButton
+                events={ events } />
+        )
+    }
+
     render () {
+        let events = {
+            self: this,
+            syncPlayers: this._syncPlayersHandler
+        }
         return (
             <div className="view-table">
                 <div className="content">
@@ -28,6 +62,8 @@ class TableView extends Component {
                 <div className="sidebar">
                     <Ranking
                         players={ this.props.players } />
+
+                    { this._renderSyncButton(events) }
                 </div>
             </div>
         );
@@ -36,12 +72,9 @@ class TableView extends Component {
 
 function mapStateToProps (state) {
     return {
-        players: state.players
+        players: state.players,
+        webSocket: state.webSocket
     }
 }
 
-function mapDispatchToProps (dispatch) {
-    return bindActionCreators({ addNewPlayer }, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TableView);
+export default connect(mapStateToProps, null)(TableView);
