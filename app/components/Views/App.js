@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 import { updatePlayer, deletePlayer, syncAllPlayers } from '../store/actions/playersActions';
 import { createWebSocketInstance } from '../store/actions/webSocketActions';
 
-const WEB_SOCKET_URL = 'http://localhost:8081/';
+const WEB_SOCKET_URL = 'http://socket.ricardolino.com.br/';
 
 class App extends Component {
     constructor(props) {
