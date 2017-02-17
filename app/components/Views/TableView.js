@@ -9,10 +9,6 @@ import Ranking from '../Ranking/';
 import { addNewPlayer } from '../store/actions/playersActions';
 
 class TableView extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render () {
         return (
             <div className="view-table">
@@ -22,7 +18,8 @@ class TableView extends Component {
                             return (
                                 <Player
                                     playerKey={key}
-                                    player={ player } />
+                                    player={ player }
+                                    star />
                             )
                         })
                     }

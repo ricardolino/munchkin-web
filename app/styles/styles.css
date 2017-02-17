@@ -10,26 +10,23 @@
     color: #FFFFFF;
     padding: 10px;
     width: 19%;
-}
-
-.new-player-title {
-    font-size: 14px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    text-align: center;
-    display: block;
-    width: 100%;
+    margin-top: 10px;
+    clear: both;
 }
 
 .new-player-name-field {
     width: 100%;
     box-sizing: border-box;
+    line-height: 25px;
+    font-size: 14px;
+    text-align: center;
 }
 
 .player {
     display: inline-block;
     width: 19%;
     margin-right: 1%;
+    float: left;
 }
 
 .player:last-child {
@@ -41,6 +38,7 @@
     display: block;
     color: #FFFFFF;
     overflow: hidden;
+    position: relative;
 }
 
 .player-info .name {
@@ -83,7 +81,6 @@
     background: rgba(0, 0, 0, 0.15);
     line-height: 30px;
     overflow: hidden;
-    cursor: pointer;
 }
 
 .player-info .gear {
@@ -92,6 +89,7 @@
     width: 25%;
     background: rgba(0, 0, 0, 0.2);
     text-align: center;
+    cursor: pointer;
 }
 
 .player-info .gear:before {
@@ -116,6 +114,14 @@
     font-weight: 300;
 }
 
+.player-info .favorite {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
 .player-attributes {
     padding: 20px;
 }
@@ -124,11 +130,15 @@
     margin-top: 0;
 }
 
+.player-attributes .attributes.gear,
+.player-attributes .attributes.level {
+    border: 1px solid transparent;
+}
+
 .player-attributes .attributes {
     width: 100%;
     position: relative;
     margin-top: 15px;
-    border: 1px solid #0082d5;
 }
 
 .player-attributes .button {
@@ -177,10 +187,37 @@
     color: #555555;
 }
 
+.component-button.delete {
+    background: #eee;
+    height: auto;
+    width: auto;
+    padding: 0 10px 0 0;
+    color: #111111;
+    position: static;
+    border: none;
+    margin-top: 15px;
+}
+
+.component-button.delete:before {
+    content: 'X';
+    font-size: 16px;
+    font-weight: 300;
+    background: #FF0000;
+    color: #FFFFFF;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    margin-right: 10px;
+    display: inline-block;
+    text-align: center;
+    padding: 0;
+}
+
 .ranking {
     display: block;
     width: 100%;
     clear: both;
+    background: #eee;
 }
 
 .ranking .title {
@@ -188,16 +225,15 @@
     display: block;
     text-align: center;
     font-weight: 600;
-    background: #eee;
     line-height: 40px;
 }
 
 .ranking .button {
-    width: 50%;
+    width: 45%;
     border: none;
     background: #0082d5;
     color: #FFFFFF;
-    line-height: 25px;
+    line-height: 30px;
     font-size: 14px;
     opacity: 0.5;
     font-weight: 300;
@@ -205,11 +241,23 @@
     cursor: pointer;
 }
 
+.ranking .button.by-level {
+    float: left;
+}
+
+.ranking .button.by-power {
+    float: right;
+}
+
 .ranking .button.active {
     cursor: default;
     opacity: 1;
     font-weight: bold;
     border-color: rgba(0, 0, 0, 0.5);
+}
+
+.ranking .list {
+    clear: both;
 }
 
 .ranking .player {
@@ -250,15 +298,49 @@
     float: left;
 }
 
-@media only screen and (max-device-width: 480px) {
-    .content,
-    .sidebar,
+@media only screen and (max-width: 1300px) {
     .player {
+        width: 24%;
+    }
+}
+
+@media only screen and (max-width: 999px) {
+    .content,
+    .sidebar {
         width: 100%;
-        padding: 0;
+        clear: both;
+    }
+    .player {
+        width: 32%;
+    }
+
+    .new-player {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        clear: both;
     }
 
     .ranking {
-        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .player {
+        width: 49%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .player {
+        width: 100%;
+        padding: 0;
+        float: none;
+    }
+
+    .new-player {
+        width: 100%;
     }
 }

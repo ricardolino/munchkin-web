@@ -9,35 +9,43 @@ const PlayerAttributes = (props) => {
     let isLevelUpDisabled = (level > 9) ? true : false;
     let isLevelDownDisabled = (level <= 1) ? true : false;
 
-    let style = {
+    let borderStyle = {
+        borderColor: color
+    }
+
+    let buttonStyle = {
         backgroundColor: color
     }
 
     return (
         <div className="player-attributes">
-            <div className="attributes level">
+            <div
+                className="attributes level"
+                style={ borderStyle }>
                 <button
                     className="button decrease"
-                    style={ style }
+                    style={ buttonStyle }
                     disabled={ isLevelDownDisabled }
                     onClick={ linkEvent(self, levelDown) }></button>
                 <h3 className="value">Level { level }</h3>
                 <button
                     className="button increase"
-                    style={ style }
+                    style={ buttonStyle }
                     disabled={ isLevelUpDisabled }
                     onClick={ linkEvent(self, levelUp) }></button>
             </div>
-            <div className="attributes gear">
+            <div
+                className="attributes gear"
+                style={ borderStyle }>
                 <button
                     className="button decrease"
-                    style={ style }
+                    style={ buttonStyle }
                     disabled={ isGearDownDisabled }
                     onClick={ linkEvent(self, gearDown) }></button>
                 <h3 className="value">Gear { gear }</h3>
                 <button
                     className="button increase"
-                    style={ style }
+                    style={ buttonStyle }
                     onClick={ linkEvent(self, gearUp) }></button>
             </div>
         </div>

@@ -5,6 +5,7 @@ import { Provider } from 'inferno-redux';
 
 import App from './components/Views/App';
 import TableView from './components/Views/TableView';
+import PlayerView from './components/Views/PlayerView';
 import NoMatchView from './components/Views/NoMatchView';
 
 import store from './components/store';
@@ -16,6 +17,7 @@ const routes = (
         <Router history={ browserHistory }>
             <Route component={ App }>
                 <IndexRoute component={ TableView }/>
+                <Route path="/player/:playerId" component={ PlayerView }/>
                 <Route path="*" component={ NoMatchView }/>
             </Route>
         </Router>

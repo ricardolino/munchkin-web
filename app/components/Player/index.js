@@ -14,9 +14,13 @@ class Player extends Component {
         super(props);
 
         this.key = props.playerKey;
+        this.socket = {};
+
         this.state = {
-            showAttributes: true
+            showAttributes: !props.star
         }
+
+        this._listenToWebSocketEvents();
     }
 
     _toggleAttributes (self) {
@@ -29,72 +33,68 @@ class Player extends Component {
 
     _levelUpHandler (self) {
         let { updatePlayer } = self.props;
-        let { level, power } = self.props.player;
+        let { level } = self.props.player;
         let playerData = {
             index: self.key,
             data: {
-                level: parseInt(level + 1, 10),
-                power: parseInt(power + 1, 10)
+                level: parseInt(level + 1, 10)
             }
         }
 
         if (level <= 9) {
-            webSocketIo.emit('player:update', playerData);
-            // updatePlayer(playerData);
+            self.socket.emit('player:update', playerData);
         }
     }
 
     _levelDownHandler (self) {
         let { updatePlayer } = self.props;
-        let { level, power } = self.props.player;
+        let { level } = self.props.player;
         let playerData = {
             index: self.key,
             data: {
-                level: parseInt(level - 1, 10),
-                power: parseInt(power - 1, 10)
+                level: parseInt(level - 1, 10)
             }
         }
 
         if (level > 1) {
-            webSocketIo.emit('player:update', playerData);
-            // updatePlayer(playerData);
+            self.socket.emit('player:update', playerData);
         }
     }
 
     _gearUpHandler (self) {
         let { updatePlayer } = self.props;
-        let { gear, power } = self.props.player;
+        let { gear } = self.props.player;
         let playerData = {
             index: self.key,
             data: {
-                gear: parseInt(gear + 1, 10),
-                power: parseInt(power + 1, 10)
+                gear: parseInt(gear + 1, 10)
             }
         }
 
-        webSocketIo.emit('player:update', playerData);
-        // updatePlayer(playerData);
+        self.socket.emit('player:update', playerData);
     }
 
     _gearDownHandler (self) {
         let { updatePlayer } = self.props;
-        let { gear, power } = self.props.player;
+        let { gear } = self.props.player;
         let playerData = {
             index: self.key,
             data: {
-                gear: parseInt(gear - 1, 10),
-                power: parseInt(power - 1, 10)
+                gear: parseInt(gear - 1, 10)
             }
         }
 
         if (gear > 0) {
-            webSocketIo.emit('player:update', playerData);
-            // updatePlayer(playerData);
+            self.socket.emit('player:update', playerData);
         }
     }
 
     _changeTitleHandler (self, event) {
         let { updatePlayer } = self.props;
+        let { name } = self.props.player;
+
+        let message = `You\'ll remove ${name} from playing. Are you sure?`;
+
         let playerData = {
             index: self.key,
             data: {
@@ -103,11 +103,10 @@ class Player extends Component {
             }
         }
 
-        webSocketIo.emit('player:update', playerData);
-        // updatePlayer(playerData);
+        self.socket.emit('player:update', playerData);
     }
 
-    renderAttributes (events, data) {
+    _renderAttributes (events, data) {
         if (!this.state.showAttributes) {
             return null;
         }
@@ -117,6 +116,10 @@ class Player extends Component {
                 events={ events }
                 data={ data } />
         )
+    }
+
+    _listenToWebSocketEvents () {
+        this.socket = this.props.webSocket.socket;
     }
 
     render () {
@@ -139,9 +142,11 @@ class Player extends Component {
         return (
             <div className="player">
                 <PlayerInfo
+                    playerKey={ this.key }
                     events={ playerInfoEvents }
-                    data={ data } />
-                    { this.renderAttributes(playerAttributesEvents, data) }
+                    data={ data }
+                    star={ this.props.star } />
+                    { this._renderAttributes(playerAttributesEvents, data) }
             </div>
         )
     }
@@ -149,7 +154,8 @@ class Player extends Component {
 
 function mapStateToProps (state) {
     return {
-        players: state.players
+        players: state.players,
+        webSocket: state.webSocket
     }
 }
 

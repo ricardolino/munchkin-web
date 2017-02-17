@@ -9,6 +9,10 @@ module.exports = {
             javascripts: { joinTo: 'app.js' },
             stylesheets: { joinTo: 'app.css' }
       },
+      conventions: {
+        ignored: () => false, // override defaults for no ignored files
+        assets: /fonts\//     // vendor/jquery/files/jq.img
+      },
       plugins: {
             babel: {
                   presets: ['es2015', 'stage-1'],
@@ -17,8 +21,5 @@ module.exports = {
       },
       modules: {
             autoRequire: { 'app.js': ['initialize'] }
-      },
-      server: {
-            hostname: "0.0.0.0"
       }
 };

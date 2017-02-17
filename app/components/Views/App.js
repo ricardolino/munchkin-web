@@ -2,45 +2,78 @@ import Component from 'inferno-component';
 import { connect } from 'inferno-redux';
 import { bindActionCreators } from 'redux';
 
-import { addNewPlayer, updatePlayer } from '../store/actions/playersActions';
+import io from 'socket.io-client';
+
+import { updatePlayer, deletePlayer } from '../store/actions/playersActions';
+import { createWebSocketInstance } from '../store/actions/webSocketActions';
+
+const WEB_SOCKET_URL = 'http://socket.ricardolino.com.br/';
 
 class App extends Component {
     constructor(props) {
         super(props);
+
+        props.createWebSocketInstance(io(WEB_SOCKET_URL));
+
+        this.socket = {};
     }
 
-    componentDidMount () {
-        webSocketIo.on('connect', () => {
-            console.log('Client has connected to the server!');
-        });
-        // Add a connect listener
-        webSocketIo.on('player:update', (data) => {
-            this.props.updatePlayer(data);
-            console.log('player:update', data);
-        });
+    _listenToWebSocketEvents () {
+        this.socket = this.props.webSocket.socket;
 
-        webSocketIo.on('player:new', (data) => {
-            this.props.addNewPlayer(data);
-            console.log('player:new', data);
-        });
-        // Add a disconnect listener
-        webSocketIo.on('disconnect', () => {
-            console.log('The client has disconnected!');
-        });
+        if (!this.socket._callbacks['$connect']) {
+            this.socket.on('connect', () => {
+                console.log('Client has connected to the server!');
+            });
+        }
+
+        if (!this.socket._callbacks['$player:update']) {
+            this.socket.on('player:update', (data) => {
+                this.props.updatePlayer(data);
+            });
+        }
+
+        if (!this.socket._callbacks['$player:delete']) {
+            this.socket.on('player:delete', (data) => {
+                this.props.deletePlayer(data);
+            });
+        }
+
+        if (!this.socket._callbacks['$disconnect']) {
+            this.socket.on('disconnect', () => {
+                console.log('The client has disconnected!');
+            });
+        }
+    }
+
+    componentDidUpdate (prevProps, prevState) {
+        if (this.props.webSocket.socket) {
+            this._listenToWebSocketEvents();
+        }
     }
 
     render () {
+        if (!this.socket) {
+            return <h1>Loading...</h1>;
+        }
+
         return (
             <div className="app">{ this.props.children }</div>
         )
     }
 }
 
-function mapDispatchToProps (dispatch) {
-    return bindActionCreators({ updatePlayer, addNewPlayer }, dispatch);
+function mapStateToProps (state) {
+    return {
+        webSocket: state.webSocket
+    }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+function mapDispatchToProps (dispatch) {
+    return bindActionCreators({ updatePlayer, deletePlayer, createWebSocketInstance }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 
 
