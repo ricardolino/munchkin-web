@@ -17,11 +17,11 @@ export function playersReducer (state = [], action) {
                     return item;
                 }
 
-                if (data.level) {
+                if (typeof data.level === 'number') {
                     dataWithPower.power = parseInt(data.level + item.gear, 10);
                 }
 
-                if (data.gear) {
+                if (typeof data.gear === 'number') {
                     dataWithPower.power = parseInt(data.gear + item.level, 10);
                 }
 
