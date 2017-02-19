@@ -5,6 +5,9 @@ import { bindActionCreators } from 'redux';
 
 import PlayerInfo from './PlayerInfo';
 import PlayerAttributes from './PlayerAttributes';
+
+import WebSocketUtils from '../../Utils/WebSocketUtils';
+
 import getRandomColor from '../../Utils/ColorUtils';
 
 import { updatePlayer } from '../store/actions/playersActions';
@@ -119,7 +122,10 @@ class Player extends Component {
     }
 
     _listenToWebSocketEvents () {
+        let { updatePlayer } = this.props;
         this.socket = this.props.webSocket.socket;
+
+        WebSocketUtils.onEvent(this.socket, 'player:update', updatePlayer);
     }
 
     render () {

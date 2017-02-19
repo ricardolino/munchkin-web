@@ -6,6 +6,9 @@ import { browserHistory } from 'inferno-router';
 import Player from '../Player/';
 import DeletePlayerButton from '../Player/DeletePlayerButton/';
 import Ranking from '../Ranking/';
+
+import WebSocketUtils from '../../Utils/WebSocketUtils';
+
 import { deletePlayer } from '../store/actions/playersActions';
 
 class PlayerView extends Component {
@@ -30,7 +33,10 @@ class PlayerView extends Component {
     }
 
     _listenToWebSocketEvents () {
+        let  { deletePlayer } = this.props;
         this.socket = this.props.webSocket.socket;
+
+        WebSocketUtils.onEvent(this.socket, 'player:delete', deletePlayer);
     }
 
     render () {

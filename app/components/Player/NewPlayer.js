@@ -3,7 +3,9 @@ import { linkEvent } from 'inferno';
 import { bindActionCreators } from 'redux';
 import { connect } from 'inferno-redux';
 
+import WebSocketUtils from '../../Utils/WebSocketUtils';
 import getRandomColor from '../../Utils/ColorUtils';
+
 import { addNewPlayer } from '../store/actions/playersActions';
 
 class NewPlayer extends Component {
@@ -16,13 +18,10 @@ class NewPlayer extends Component {
     }
 
     _listenToWebSocketEvents () {
+        let { addNewPlayer } = this.props;
         this.socket = this.props.webSocket.socket;
 
-        if (!this.socket._callbacks['$player:new']) {
-            this.socket.on('player:new', (data) => {
-                this.props.addNewPlayer(data);
-            });
-        }
+        WebSocketUtils.onEvent(this.socket, 'player:new', addNewPlayer);
     }
 
     _addNewPlayer (self, event) {

@@ -4,10 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import io from 'socket.io-client';
 
-import { updatePlayer, deletePlayer, syncAllPlayers } from '../store/actions/playersActions';
-import { createWebSocketInstance } from '../store/actions/webSocketActions';
+import WebSocketUtils, { WEB_SOCKET_URL } from '../../Utils/WebSocketUtils';
 
-const WEB_SOCKET_URL = 'http://socket.ricardolino.com.br/';
+import { createWebSocketInstance } from '../store/actions/webSocketActions';
 
 class App extends Component {
     constructor(props) {
@@ -21,35 +20,14 @@ class App extends Component {
     _listenToWebSocketEvents () {
         this.socket = this.props.webSocket.socket;
 
-        if (!this.socket._callbacks['$connect']) {
-            this.socket.on('connect', () => {
-                console.log('Client has connected to the server!');
-            });
-        }
 
-        if (!this.socket._callbacks['$player:update']) {
-            this.socket.on('player:update', (data) => {
-                this.props.updatePlayer(data);
-            });
-        }
+        WebSocketUtils.onEvent(this.socket, 'connect', (data) => {
+            console.log('Client has connected to the server!');
+        });
 
-        if (!this.socket._callbacks['$player:delete']) {
-            this.socket.on('player:delete', (data) => {
-                this.props.deletePlayer(data);
-            });
-        }
-
-        if (!this.socket._callbacks['$player:sync']) {
-            this.socket.on('player:sync', (data) => {
-                this.props.syncAllPlayers(data);
-            });
-        }
-
-        if (!this.socket._callbacks['$disconnect']) {
-            this.socket.on('disconnect', () => {
-                console.log('The client has disconnected!');
-            });
-        }
+        WebSocketUtils.onEvent(this.socket, 'disconnect', (data) => {
+            console.log('The client has disconnected!');
+        });
     }
 
     componentDidUpdate (prevProps, prevState) {
@@ -76,7 +54,7 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-    return bindActionCreators({ updatePlayer, deletePlayer, syncAllPlayers, createWebSocketInstance }, dispatch);
+    return bindActionCreators({ createWebSocketInstance }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

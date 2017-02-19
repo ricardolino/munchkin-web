@@ -7,7 +7,10 @@ import Player from '../Player/';
 import NewPlayer from '../Player/NewPlayer';
 import SyncPlayersButton from '../Player/SyncPlayersButton';
 import Ranking from '../Ranking/';
-import { addNewPlayer } from '../store/actions/playersActions';
+
+import WebSocketUtils from '../../Utils/WebSocketUtils';
+
+import { syncAllPlayers } from '../store/actions/playersActions';
 
 class TableView extends Component {
     constructor(props) {
@@ -19,7 +22,10 @@ class TableView extends Component {
     }
 
     _listenToWebSocketEvents () {
+        let { syncAllPlayers } = this.props;
         this.socket = this.props.webSocket.socket;
+
+        WebSocketUtils.onEvent(this.socket, 'player:sync', syncAllPlayers);
     }
 
     _syncPlayersHandler (self, event) {
@@ -77,4 +83,8 @@ function mapStateToProps (state) {
     }
 }
 
-export default connect(mapStateToProps, null)(TableView);
+function mapDispatchToProps (dispatch) {
+    return bindActionCreators({ syncAllPlayers }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableView);
