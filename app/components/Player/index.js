@@ -109,6 +109,20 @@ class Player extends Component {
         self.socket.emit('player:update', playerData);
     }
 
+    _changeGender (self) {
+        let { updatePlayer } = self.props;
+        let { gender } = self.props.player;
+        let playerData = {
+            index: self.key,
+            data: {
+                gender: event.target.value
+            }
+        }
+        console.log(playerData.data.gender);
+
+        self.socket.emit('player:update', playerData);
+    }
+
     _renderAttributes (events, data) {
         if (!this.state.showAttributes) {
             return null;
@@ -140,6 +154,7 @@ class Player extends Component {
         let playerInfoEvents = {
             self: this,
             changeTitle: this._changeTitleHandler,
+            changeGender: this._changeGender,
             toggleAttributes: this._toggleAttributes
         }
 

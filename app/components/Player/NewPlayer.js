@@ -42,6 +42,7 @@ class NewPlayer extends Component {
     render () {
         return (
             <div className="new-player">
+                <p className="plus-button" title="Add Player"><i className="icon-plus"></i><span>Add Player</span></p>
                 <input
                     className="new-player-name-field"
                     placeholder="New Player"

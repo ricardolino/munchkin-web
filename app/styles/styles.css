@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800');
 
+
+body {
+    background: #ffd09a;
+}
 .app {
     font-family: "Open Sans", sans-serif;
 }
@@ -9,9 +13,37 @@
     background: #0082d5;
     color: #FFFFFF;
     padding: 10px;
-    width: 19%;
+    width: 100%;
     margin-top: 10px;
     clear: both;
+    position: fixed;
+    bottom: -50px;
+    left: 0;
+    transition: bottom .4s
+}
+
+.plus-button {
+    position: absolute;
+    bottom: 100%;
+    padding: 5px 10px 5px 30px;
+    border-radius: 5px 5px 0 0;
+    font-size: 15px;
+    background: #0082d5;
+}
+
+.new-player .plus-button {
+    right: 20px
+}
+
+.plus-button i {
+    font-size: 18px;
+    position: absolute;
+    left: 3px;
+}
+
+.new-player:hover{
+    z-index: 100;
+    bottom: 0px;
 }
 
 .new-player-name-field {
@@ -34,6 +66,9 @@
 }
 
 .player-info {
+    /*height: 250px;
+    border: 3px solid #482904;
+    width: 180px;*/
     background: #0082d5;
     display: block;
     color: #FFFFFF;
@@ -41,6 +76,23 @@
     position: relative;
 }
 
+.player-info select{
+    position: absolute;
+    right: 0px;
+    top: 3px;
+    text-decoration: none;
+    color: #FFFFFF;
+    -webkit-appearance: none;
+    height: 30px;
+    width: 30px;
+    font-size: 19px;
+    border: none;
+    background: transparent;
+    padding-left: 4px;
+}
+.player-info select:focus{
+    outline: none;
+}
 .player-info .name {
     font-size: 24px;
     float: left;
@@ -66,6 +118,8 @@
     background: rgba(0, 0, 0, 0.2);
     font-weight: 600;
     cursor: pointer;
+    position: relative;
+    z-index: 10;
 }
 
 .player-info .level:before {
@@ -73,6 +127,17 @@
     font-size: 11px;
     font-weight: 300;
     display: block;
+    z-index: 10;
+}
+
+.player-info .icon-crown {
+    position: absolute;
+    left: calc(50% - 41px);
+    font-size: 60px;
+    top: 10px;
+    color: yellow;
+    z-index: -1;
+    opacity: 0.6;
 }
 
 .player-info .bar {
@@ -116,7 +181,7 @@
 
 .player-info .favorite {
     position: absolute;
-    right: 10px;
+    right: 30px;
     top: 10px;
     text-decoration: none;
     color: #FFFFFF;
@@ -214,14 +279,14 @@
 }
 
 .component-button.sync {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100px;
+    padding: 5px;
     display: block;
-    border: none;
-    width: 100%;
-    max-width: 200px;
-    height: 30px;
-    margin: 10px auto 0;
     color: #000;
-    border: 2px solid #888;
+    border: 1px solid #888;
     cursor: pointer;
 }
 
@@ -230,11 +295,31 @@
 }
 
 .ranking {
-    display: block;
+    display: inline-block;
     width: 100%;
     clear: both;
+    position: fixed;
+    top: 100%;
+    left: 0;
     background: #eee;
-    overflow: hidden;
+    transition: top .4s, bottom .4s
+}
+
+.ranking .plus-button {
+    right: 150px;
+    background: #eee;
+}
+
+.ranking .plus-button i {
+    font-size: 14px;
+    position: absolute;
+    left: 5px;
+}
+
+.ranking:hover{
+    z-index: 100;
+    top: 30%;
+    height: 100%;
 }
 
 .ranking .title {
@@ -307,6 +392,7 @@
     float: right;
     display: block;
     padding-left: 1%;
+    margin-bottom: 31px;
 }
 
 .sidebar {
@@ -322,8 +408,7 @@
 }
 
 @media only screen and (max-width: 999px) {
-    .content,
-    .sidebar {
+    .content{
         width: 100%;
         clear: both;
     }
@@ -331,17 +416,6 @@
         width: 32%;
     }
 
-    .new-player {
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        clear: both;
-    }
-
-    .ranking {
-        margin-top: 30px;
-    }
 }
 
 @media only screen and (max-width: 750px) {
@@ -359,5 +433,24 @@
 
     .new-player {
         width: 100%;
+    }
+    .plus-button{
+        height: 25px;
+        padding-left: 20px;
+    }
+    .plus-button span{
+        display: none;
+    }
+    .ranking .plus-button {
+        right: 60px;
+    }
+    .component-button.sync {
+        width: 30px;
+        color: #333;
+        background: transparent;
+        border: none;
+    }
+    .component-button.sync span{
+        display: none
     }
 }

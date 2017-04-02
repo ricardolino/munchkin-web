@@ -33,6 +33,7 @@ class Ranking extends Component {
 
         return (
             <div className="ranking">
+                <p className="plus-button" title="Add Player"><i className="icon-list-numbered"></i><span>Ranking</span></p>
                 <h3 className="title">Ranking</h3>
                 <button
                     onClick={ linkEvent(this, this._toggleOrderBy) }

@@ -65,12 +65,10 @@ class TableView extends Component {
                     }
                     <NewPlayer />
                 </div>
-                <div className="sidebar">
-                    <Ranking
-                        players={ this.props.players } />
+                <Ranking
+                    players={ this.props.players } />
 
-                    { this._renderSyncButton(events) }
-                </div>
+                { this._renderSyncButton(events) }
             </div>
         );
     }

@@ -2,8 +2,8 @@ import { linkEvent } from 'inferno';
 import { Link } from 'inferno-router';
 
 const PlayerInfo = (props) => {
-    let { name, level, gear, power, color } = props.data;
-    let { self, toggleAttributes, changeTitle } = props.events;
+    let { name, level, gear, power, color, gender } = props.data;
+    let { self, toggleAttributes, changeTitle, changeGender } = props.events;
     let style = {
         backgroundColor: color
     }
@@ -21,10 +21,15 @@ const PlayerInfo = (props) => {
             className="player-info"
             style={style}>
             { _renderStar() }
+            <select onChange={ linkEvent(self, changeGender) }>
+                <option value="Male">&#9794;</option>
+                <option value="Female">&#9792;</option>
+            </select>
 
             <h2
                 className="level"
-                onClick={ linkEvent(self, toggleAttributes) }>{ level }</h2>
+                onClick={ linkEvent(self, toggleAttributes) }>{ level }<i className="icon-crown"></i></h2>
+
             <input
                 className="name"
                 defaultValue={ name }
