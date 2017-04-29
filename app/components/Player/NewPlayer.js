@@ -31,6 +31,7 @@ class NewPlayer extends Component {
             level: 1,
             gear: 0,
             power: 1,
+            gender: 'Male',
             color: getRandomColor()
         };
 

@@ -16,15 +16,23 @@ const PlayerInfo = (props) => {
         return <Link className="favorite icon-star-empty" to={`/player/${props.playerKey}`}></Link>;
     }
 
+    let _renderGender = () => {
+        return (
+            <select value={gender} onChange={ linkEvent(self, changeGender) }>
+                <option value="Male">&#9794;</option>
+                <option value="Female">&#9792;</option>
+            </select>
+        )
+    }
+
     return (
         <div
             className="player-info"
             style={style}>
+
             { _renderStar() }
-            <select onChange={ linkEvent(self, changeGender) }>
-                <option value="Male">&#9794;</option>
-                <option value="Female">&#9792;</option>
-            </select>
+
+            { _renderGender() }
 
             <h2
                 className="level"

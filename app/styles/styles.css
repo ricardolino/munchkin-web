@@ -2,7 +2,7 @@
 
 
 body {
-    background: #ffd09a;
+    background: #222;
 }
 .app {
     font-family: "Open Sans", sans-serif;
@@ -58,6 +58,7 @@ body {
     display: inline-block;
     width: 19%;
     margin-right: 1%;
+    margin-bottom: 1%;
     float: left;
 }
 
@@ -250,6 +251,7 @@ body {
     display: block;
     text-align: center;
     color: #555555;
+    background: rgba(255,255,255,0.9);
 }
 
 .component-button.delete {
@@ -316,7 +318,7 @@ body {
     left: 5px;
 }
 
-.ranking:hover{
+.ranking:hover {
     z-index: 100;
     top: 30%;
     height: 100%;
@@ -388,11 +390,9 @@ body {
 }
 
 .content {
-    width: 85%;
-    float: right;
     display: block;
+    padding-top: 1%;
     padding-left: 1%;
-    margin-bottom: 31px;
 }
 
 .sidebar {
