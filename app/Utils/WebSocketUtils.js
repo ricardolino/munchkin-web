@@ -1,4 +1,4 @@
-export const WEB_SOCKET_URL = 'http://localhost:8081/';
+export const WEB_SOCKET_URL = 'http://socket.ricardolino.com.br/';
 
 class WebSocketUtils {
     static onEvent (socket, event, callback) {
