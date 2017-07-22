@@ -6,7 +6,7 @@ It is a helper to Munchkin® card game, using InfernoJS and SocketIO.
 - Equipment Counter
 - Power Counter
 - Gender Mark
-- Game Rank
+- Game Ranking
 
 ## Live version:
 http://munchkin.ricardolino.com.br
